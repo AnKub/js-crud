@@ -1,5 +1,7 @@
 $colorMap: (
-light: #ddd,
+title:rgb(14, 92, 0),
+primary: rgb(48, 112, 239),
+text_white: white,
 );
 
 @function color ($key) {
