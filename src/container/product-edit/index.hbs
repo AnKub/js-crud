@@ -5,18 +5,17 @@
 <main class='main'>
   <section>
     <div class='form'>
-      <h1 class='form__title'>Редагування товару</h1>
+      <h1 class='form__title'>Make Change</h1>
       <form method='POST' action='/product-edit'>
         <div class='form__content'>
-          <h5>Інформація про товар</h5>
+          <h5>ІInfo</h5>
           <div class='row3col'>
             <div class='form__field'>
-              <label for='name' class='form__label'>Назва
-                товару:</label>
+              <label for='name' class='form__label'>Name:</label>
               <input type='text' name='name' class='form__input' value='{{name}}' />
             </div>
             <div class='form__field'>
-              <label for='price' class='form__label'>Ціна:</label>
+              <label for='price' class='form__label'>Price:</label>
               <input type='number' name='price' class='form__input' value='{{price}}' placeholder='{{price}}' />
             </div>
             <div class='form__field'>
@@ -25,12 +24,12 @@
             </div>
           </div>
           <div class='form__field'>
-            <label for='description' class='form__label'>Короткий опис товару:</label>
+            <label for='description' class='form__label'>description:</label>
             <input type='text' name='description' id='description' value='{{description}}' class='form__input' />
           </div>
           <div class='row2col'>
-            <button class='form__button' type='submit'>Зберегти оновлення</button>
-            <a class='form__button delete_button' href='/product-delete?id={{id}}'>Видалити товар</a>
+            <button class='form__button' type='submit'>Save changes</button>
+            <a class='form__button delete_button' href='/product-delete?id={{id}}'>Delete</a>
           </div>
         </div>
       </form>
