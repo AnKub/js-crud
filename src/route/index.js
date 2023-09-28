@@ -122,17 +122,28 @@ class Playlist {
 }
 
 Playlist.makeMix(
-  Playlist.create('Favorites', '/img/favorites.jpg'),
-)
-
-Playlist.makeMix(Playlist.create('Mixed', '/img/mixed.jpg'))
-
-Playlist.makeMix(
-  Playlist.create('Random', '/img/random.jpg'),
+  Playlist.create(
+    'Favorites',
+    'https://picsum.photos/200/200',
+  ),
 )
 
 Playlist.makeMix(
-  Playlist.create('My playlist', '/img/my-playlist.jpg'),
+  Playlist.create('Mixed', 'https://picsum.photos/200/200'),
+)
+
+Playlist.makeMix(
+  Playlist.create(
+    'Random',
+    'https://picsum.photos/200/200',
+  ),
+)
+
+Playlist.makeMix(
+  Playlist.create(
+    'My playlist',
+    'https://picsum.photos/200/200',
+  ),
 )
 
 // ================================================================
@@ -232,7 +243,7 @@ router.post('/spotify-create', function (req, res) {
 
       data: {
         message: 'Some trouble',
-        info: 'Please, write neme playlist',
+        info: 'Please, write NAME playlist',
         link: isMix
           ? '/spotify-create?isMix=true'
           : '/spotify-create',
