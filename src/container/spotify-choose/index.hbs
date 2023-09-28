@@ -1,0 +1,31 @@
+{{!
+Це код container файлу для index сторінки,
+в якому міститься код, котрий буде віддаватися по шляху (PATH) - "/"
+}}<main>
+  <div class="main__content">
+    <h1 class="title title--center"> Make your Playlist</h1>
+    <ul class="choose">
+      <a href="/spotify-create">
+        <li class="choose__item">
+          <img src="/img/icons8-play-64.png" alt="" class="choose__image">
+          {{!-- dont forget take a pictures --}}
+          <div class="choose__content">
+            <strong class="title">Playlist</strong>
+            <p class="shoose__text">Make playlist with songs or parts</p>
+          </div>
+        </li>
+      </a>
+      <a href="/spotify-create?isMix=true">
+        <li class="choose__item">
+          <img src="/img/icons8-mix-64.png" alt="" class="choose__image">
+          {{!-- take a pictures --}}
+          <div class="choose__content">
+            <strong class="title">Mix - Playlist</strong>
+            <p class="choose__text">Make playlist with songs or parts</p>
+          </div>
+        </li>
+      </a>
+
+    </ul>
+  </div>
+</main>

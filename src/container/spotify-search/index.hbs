@@ -1,0 +1,29 @@
+{{!
+Це код container файлу для index сторінки,
+в якому міститься код, котрий буде віддаватися по шляху (PATH) - "/"
+}}
+<main>
+  {{#with data}}
+  <div class='main__content'>
+    <h1 class='title title--center'>Are you looking for something.</h1>
+
+    <form method='POST' action='/spotify-search' class='search'>
+      <img src='/img/search.png' alt='' width="40px" height="40px" />
+      <input type='search' class='search__input' placeholder='just write...' name='value' value='{{value}}' />
+      <button class='search__button'>Search</button>
+    </form>
+
+    <ul class='playlist__list'>
+      {{#each list}}
+      <li class='playlist'>
+        <img src='{{image}}' alt='{{name}}' height='100px' class="track__img" />
+        <div class='playlist__content'>
+          <strong class='playlist__name'>{{name}}</strong>
+          <em class='playlist__amount'>number of songs: {{amount}}</em>
+        </div>
+      </li>
+      {{/each}}
+    </ul>
+  </div>
+  {{/with}}
+</main>

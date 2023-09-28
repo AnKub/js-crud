@@ -1,0 +1,44 @@
+@use '../../lib/service.scss' as s;
+@use '../../lib/spotify.scss' as spotify;
+
+
+
+
+
+  .row {
+    display: flex;
+    justify-content: space-between;
+    grid-gap: s.space(4);
+   border: 3px solid rgb(232,63,250);;
+   padding: 30px;
+   border-radius: 20px;
+  }
+
+  .info {
+    align-self: center;
+    text-align: left;
+    gap: 16px;
+   
+
+    h4 {
+      font-size: larger;
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      margin-bottom: s.space(3);
+    }
+  }
+
+  .button{
+    color: s.color(dark);
+    background: rgb(232,63,250);
+    background: linear-gradient(152deg, rgba(232,63,250,0.7959558823529411) 16%, rgba(87,197,201,1) 53%, rgba(220,241,241,1) 83%);
+    max-width: fit-content;
+    font-size: 20px;
+    padding: s.space(3) s.space(10);
+    border-radius: 50px;
+    transition: opacity 0.6s;
+    
+    &:hover{
+    opacity: 0.6;
+    }
+    }
+  

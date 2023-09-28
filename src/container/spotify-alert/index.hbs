@@ -1,0 +1,26 @@
+{{!
+Це код container файлу для index сторінки,
+в якому міститься код, котрий буде віддаватися по шляху (PATH) - "/"
+}}
+<main>
+
+
+  <div class='main__content'>
+    <div class='row'>
+      <div class='info'>
+        {{#with data}}
+        <h4 class="title">{{message}}</h4>
+        <p class="title--center">{{info}}</p>
+      </div>
+
+      <a href='{{link}}' class='button'>Return</a>
+      {{/with}}
+    </div>
+  </div>
+</main>
+{{!
+Цей код містить лише те, що буде виводитись в
+
+<body>
+  Адже наш layout/default.hbs має вже структуру HTML
+  }}
