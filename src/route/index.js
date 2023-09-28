@@ -4,12 +4,11 @@ const express = require('express')
 const router = express.Router()
 
 // ================================================================
-// try do something
 class Track {
   static #list = []
 
   constructor(name, author, image) {
-    this.id = Math.floor(1000 + Math.random() * 9000) //random number for ID
+    this.id = Math.floor(1000 + Math.random() * 9000) //Генеруємо випадкове id
     this.name = name
     this.author = author
     this.image = image
@@ -23,12 +22,8 @@ class Track {
   static getList() {
     return this.#list.reverse()
   }
-  static getById(id) {
-    return (
-      Track.#list.find((track) => (track.id = id)) || null
-    )
-  }
 }
+
 Track.create(
   'Highway to Hell',
   'AC/DC',
@@ -69,19 +64,19 @@ Track.create(
   'Black Pumas',
   'https://picsum.photos/100/100',
 )
+
 console.log(Track.getList())
 
-// new clss for playlist
 class Playlist {
   static #list = []
 
   constructor(name, image) {
-    this.id = Math.floor(1000 + Math.random() * 9000)
+    this.id = Math.floor(1000 + Math.random() * 9000) //Генеруємо випадкове id
     this.name = name
     this.tracks = []
     this.image = image || 'https://picsum.photos/100/100'
   }
-  // Статичний метод для створення об'єкту Track і додавання його до списку #list
+
   static create(name, image) {
     const newPlaylist = new Playlist(name, image)
     this.#list.push(newPlaylist)
@@ -127,47 +122,32 @@ class Playlist {
 }
 
 Playlist.makeMix(
-  Playlist.create(
-    'Favorites',
-    'https://picsum.photos/100/100',
-  ),
+  Playlist.create('Favorites', '/img/favorites.jpg'),
+)
+
+Playlist.makeMix(Playlist.create('Mixed', '/img/mixed.jpg'))
+
+Playlist.makeMix(
+  Playlist.create('Random', '/img/random.jpg'),
 )
 
 Playlist.makeMix(
-  Playlist.create('Mixed', 'https://picsum.photos/100/100'),
-)
-
-Playlist.makeMix(
-  Playlist.create(
-    'Random',
-    'https://picsum.photos/100/100',
-  ),
-)
-
-Playlist.makeMix(
-  Playlist.create(
-    'My playlist',
-    'https://picsum.photos/100/100',
-  ),
+  Playlist.create('My playlist', '/img/my-playlist.jpg'),
 )
 
 // ================================================================
 router.get('/', function (req, res) {
+  allTracks = Track.getList()
+  console.log(allTracks)
+
+  const allPlaylists = Playlist.getList()
+  console.log(allPlaylists)
+
   res.render('spotify-choose', {
     style: 'spotify-choose',
-    data: {},
-  })
-})
-// ==============================================================
-router.get('/', function (req, res) {
-  const list = Playlist.getList()
-  console.log(list)
-
-  res.render('spotify', {
-    style: 'spotify',
 
     data: {
-      list: list.map(({ tracks, ...rest }) => ({
+      list: allPlaylists.map(({ tracks, ...rest }) => ({
         ...rest,
         amount: tracks.length,
       })),
@@ -215,6 +195,15 @@ router.post('/spotify-search', function (req, res) {
   })
 })
 // ================================================================
+router.get('/spotify-choose', function (req, res) {
+  res.render('spotify-choose', {
+    style: 'spotify-choose',
+
+    data: {},
+  })
+})
+
+// ================================================================
 router.get('/spotify-create', function (req, res) {
   const isMix = !!req.query.isMix
 
@@ -242,8 +231,8 @@ router.post('/spotify-create', function (req, res) {
       style: 'spotify-alert',
 
       data: {
-        message: 'We have some trouble',
-        info: 'Please, name the playlist',
+        message: 'Some trouble',
+        info: 'Please, write neme playlist',
         link: isMix
           ? '/spotify-create?isMix=true'
           : '/spotify-create',
@@ -270,9 +259,9 @@ router.post('/spotify-create', function (req, res) {
     },
   })
 })
-// ============================================================
 
-// obout playlist spotify
+// ================================================================
+
 router.get('/spotify-playlist', function (req, res) {
   const id = Number(req.query.id)
   const playlist = Playlist.getById(id)
@@ -282,14 +271,14 @@ router.get('/spotify-playlist', function (req, res) {
       style: 'spotify-alert',
 
       data: {
-        massage: 'Error',
-        info: 'This playlist not find',
+        message: 'Some trouble',
+        info: '(ﾉ´ヮ`)ﾉ*: ･ﾟ',
         link: '/',
       },
     })
   }
 
-  res.render('/spotify-playlist', {
+  res.render('spotify-playlist', {
     style: 'spotify-playlist',
 
     data: {
@@ -312,8 +301,8 @@ router.get('/spotify-track-delete', function (req, res) {
       style: 'spotify-alert',
 
       data: {
-        message: 'ヽ(°□° )ノ',
-        info: 'Nope',
+        message: 'Some trouble',
+        info: '(ﾉ´ヮ`)ﾉ*: ･ﾟ',
         link: `/spotify-playlist?id=${playlistId}`,
       },
     })
@@ -331,68 +320,63 @@ router.get('/spotify-track-delete', function (req, res) {
     },
   })
 })
-router.get('/spotify-playlist-add', function (req, res) {
+// ================================================================
+router.get('/spotify-track-add', function (req, res) {
   const playlistId = Number(req.query.playlistId)
   const playlist = Playlist.getById(playlistId)
-  console.log('/spotify-playlist-add')
+  const allTracks = Track.getList()
 
-  if (!playlist) {
-    return res.render('spotify-alert', {
-      style: 'spotify-alert',
-      data: {
-        message: 'Trouble',
-        info: 'ヽ(°□° )ノ',
-        link: '/',
-      },
-    })
-  }
-  res.render('spotify-playlist-add', {
-    style: 'spotify-playlist-add',
+  console.log(playlistId, playlist, allTracks)
+
+  res.render('spotify-track-add', {
+    style: 'spotify-track-add',
 
     data: {
       playlistId: playlist.id,
-      tracks: Track.getList(),
-      name: playlist.name,
+      tracks: allTracks,
+      // link: `/spotify-track-add?playlistId={{playlistId}}&trackId=={{id}}`,
     },
   })
 })
+
 // ================================================================
 
-router.get('/spotify-track-add', function (req, res) {
-  const playlistId = Number(req.query.playlistId)
-  const trackId = Number(req.query.trackId)
-  console.log('/spotify-track-add', playlistId, trackId)
+router.post('/spotify-track-add', function (req, res) {
+  const playlistId = Number(req.body.playlistId)
+  const trackId = Number(req.body.trackId)
+
   const playlist = Playlist.getById(playlistId)
-  const track = Track.getById(trackId)
-  console.log('objs', playlist, track)
 
   if (!playlist) {
     return res.render('spotify-alert', {
       style: 'spotify-alert',
       data: {
-        message: 'Trouble',
-        info: 'ヽ(°□° )ノ',
-        link: '/spotify-playlist?id=${playlistId}',
+        message: 'Помилка',
+        info: 'Такого плейліста не знайдено',
+        link: `/spotify-playlist?id=${playlistId}`,
       },
     })
   }
 
-  if (!track) {
+  const trackToAdd = Track.getList().find(
+    (track) => track.id === trackId,
+  )
+
+  if (!trackToAdd) {
     return res.render('spotify-alert', {
       style: 'spotify-alert',
       data: {
-        message: 'Trouble',
-        info: 'ヽ(°□° )ノ',
-        link: '/spotify-playlist?id=${playlistId}',
+        message: 'Помилка',
+        info: 'Такого треку не знайдено',
+        link: `/spotify-track-add?playlistId=${playlistId}`,
       },
     })
   }
 
-  playlist.addTrack(track)
+  playlist.tracks.push(trackToAdd)
 
   res.render('spotify-playlist', {
     style: 'spotify-playlist',
-
     data: {
       playlistId: playlist.id,
       tracks: playlist.tracks,
