@@ -5,9 +5,9 @@
   gap: 32px;
 }
 .form__title {
-  font-size: 28px;
+  font-size: 20px;
   font-weight: bold;
-  padding-bottom: 4px;
+  padding-bottom: 8px;
   border-bottom: 1px solid #ddd;
 }
 .form__content {
@@ -38,7 +38,7 @@ main {
   gap: 40px;
 }
 
-.user-list li {
+.user-list {
   padding-right: 15px;
   padding-top: 5px;
   padding-bottom: 5px;

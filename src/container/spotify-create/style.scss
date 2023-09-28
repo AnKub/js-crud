@@ -1,0 +1,69 @@
+@use '../../lib/service.scss' as s;
+@use '../../lib/spotify.scss' as spotify;
+
+.title--small{
+font-size: 34px;
+}
+
+.header{
+display: flex;
+justify-content: flex-end;
+}
+
+.choose{
+display: grid;
+gap: s.space(6);
+}
+.choose__item{
+display: grid;
+grid-template-columns: 56px 1fr;
+gap: s.space(6);
+}
+.choose__content{
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+}
+
+.form{
+display: flex;
+flex-direction: column;
+gap: s.space(10);
+align-items:center;
+}
+
+.form__field{
+width: 100%;
+font-size: 24px;
+color: s.color(light);
+text-align: center;
+padding: s.space(4);
+border-bottom: 1px  solid rgba(113, 113, 244, 0.798);
+}
+
+.form__button{
+color: s.color(dark);
+background: rgb(232,63,250);
+background: linear-gradient(152deg, rgba(232,63,250,0.7959558823529411) 16%, rgba(87,197,201,1) 53%, rgba(220,241,241,1) 83%);
+max-width: fit-content;
+font-size: 20px;
+padding: s.space(3) s.space(10);
+border-radius: 50px;
+transition: opacity 0.6s;
+
+&:hover{
+opacity: 0.6;
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+

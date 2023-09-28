@@ -1,0 +1,18 @@
+{{!
+Це код container файлу для index сторінки,
+в якому міститься код, котрий буде віддаватися по шляху (PATH) - "/"
+}}<main>
+  <div class="main__content">
+    <header class="header">
+      <a href='spotify-choose'>
+        <img src="/img/icons8-close-64.png" alt="">
+      </a>
+    </header>
+    <h1 class="title title--center title--small">Make</h1>
+
+    <form method="POST" action="/spotify-create{{#if data.isMix}}?isMix=true{{/if}}" class="form">
+      <input type="text" class="form__field" placeholder="Please, name the playlist" name="name">
+      <button class="form__button">Create</button>
+    </form>
+  </div>
+</main>

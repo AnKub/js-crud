@@ -1,0 +1,27 @@
+{{!
+Це код container файлу для index сторінки,
+в якому міститься код, котрий буде віддаватися по шляху (PATH) - "/"
+}}
+<main>
+  {{#with data}}
+  <div class="main__content">
+    <h1 class="title title--center">ADD to Playlist</h1>
+
+    <ul class="track-list">
+      {{#each tracks}}
+      <li class="track">
+        <img src="{{image}}" alt="{{name}}" class="track__img">
+        <div class="track__content">
+          <strong class="track__name">{{name}}</strong>
+          <em class="track__author">{{author}}</em>
+        </div>
+        <form action="/spotify-track-add" method="POST"></form>
+        <input type="hidden" name="playlistId" value="{{../playlistId}}">
+        <input type="hidden" name="trackId" value="{{id}}">
+        <button type="submit" class="add-button"> add </button>
+      </li>
+      {{/each}}
+    </ul>
+  </div>
+  {{/with}}
+</main>
